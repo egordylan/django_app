@@ -4,6 +4,7 @@ from rest_framework import exceptions
 import jwt
 from django.conf import settings
 from users.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class JWTAuthentication(BaseAuthentication):
@@ -39,7 +40,7 @@ class JWTAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed(
                 'Token is invalid')
 
-        except User.DoesNotExist as no_user:
+        except ObjectDoesNotExist:  # User.DoesNotExist:
             raise exceptions.AuthenticationFailed(
                 'No such user')
 

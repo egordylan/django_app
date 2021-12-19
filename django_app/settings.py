@@ -137,20 +137,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'users.jwt.JWTAuthentication'
-        #'rest_framework.authentication.BasicAuthentication',
-        #'rest_framework.authentication.SessionAuthentication',
-    ],
-}
+     'DEFAULT_AUTHENTICATION_CLASSES': [
+         'users.jwt.JWTAuthentication'
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+     ],
+ }
 
+# change the built-in user model
 AUTH_USER_MODEL = 'users.User'
 
 JWT_AUTH = {
 
-   'JWT_VERIFY': True,
-   'JWT_VERIFY_EXPIRATION': True,
-   'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
-   'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+    'JWT_VERIFY': True,
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 
 }

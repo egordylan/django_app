@@ -12,15 +12,15 @@ from django.conf import settings
 from datetime import datetime, timedelta
 
 
-MEMBER = 'Member'
-SUPPORT = 'Support'
-ADMIN = 'Admin'
-
-ROLES = [
-    (MEMBER, 'Member'),
-    (SUPPORT, 'Support'),
-    (ADMIN, 'Admin'),
-]
+# MEMBER = 'Member'
+# SUPPORT = 'Support'
+# ADMIN = 'Admin'
+#
+# ROLES = [
+#     (MEMBER, 'Member'),
+#     (SUPPORT, 'Support'),
+#     (ADMIN, 'Admin'),
+# ]
 
 
 class MyUserManager(UserManager):
@@ -51,15 +51,15 @@ class MyUserManager(UserManager):
         return self._create_user(username, email, password, **extra_fields)
 
     #  создание суппорта ????
-    def create_staffuser(self, username, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', False)
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Staffuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not False:
-            raise ValueError('Staffuser must have is_superuser=True.')
-
-        return self._create_user(username, email, password, **extra_fields)
+    # def create_staffuser(self, username, email, password=None, **extra_fields):
+    #     extra_fields.setdefault('is_staff', True)
+    #     extra_fields.setdefault('is_superuser', False)
+    #     if extra_fields.get('is_staff') is not True:
+    #         raise ValueError('Staffuser must have is_staff=True.')
+    #     if extra_fields.get('is_superuser') is not False:
+    #         raise ValueError('Staffuser must have is_superuser=True.')
+    #
+    #     return self._create_user(username, email, password, **extra_fields)
 
     def create_superuser(self, username, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
@@ -95,6 +95,7 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModels):
     first_name = models.CharField(_('first name'), max_length=150, blank=True)
     last_name = models.CharField(_('last name'), max_length=150, blank=True)
     email = models.EmailField(_('email address'), blank=False, unique=True)
+    #role = models.CharField(max_length=15, choices=ROLES, default="Member")  ##############
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
