@@ -61,7 +61,7 @@ class TestModel(APITestCase):
     # staff
     def test_cant_creates_staff_user_with_is_staff_status(self):
         with self.assertRaisesMessage(ValueError, 'Staffuser must have is_staff=True.'):
-            User.objects.create_staffuser(
+            User.objects.create_staff_user(
                 username='staff',
                 email='staff@mail.com',
                 password='staffpassword123*//#R',
@@ -69,14 +69,14 @@ class TestModel(APITestCase):
 
     def test_cant_creates_staff_user_with_superuser_status(self):
         with self.assertRaisesMessage(ValueError, 'Staffuser must have is_superuser=False.'):
-            User.objects.create_staffuser(
+            User.objects.create_staff_user(
                 username='staff',
                 email='staff@mail.com',
                 password='staffpassword123*//#R',
                 is_superuser=True)
 
     def test_creates_staff_user(self):
-        user = User.objects.create_staffuser('staff', 'staff@mail.com', 'staffpassword123*//#R')
+        user = User.objects.create_staff_user('staff', 'staff@mail.com', 'staffpassword123*//#R')
         self.assertIsInstance(user, User)
         self.assertTrue(user.is_staff)
         self.assertEqual(user.email, 'staff@mail.com')
