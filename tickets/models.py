@@ -7,9 +7,11 @@ from users.models import User
 class Ticket(TrackingModels):
     title = models.CharField(max_length=255)
     desc = models.TextField()  # description
-    #is_complete = models.BooleanField(default=False)
+    is_complete = models.BooleanField(default=False)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    status = models.ForeignKey(to=Status, )  # передать статус от суппорта
+    # status = models.ForeignKey(to=Status,
+    #                            limit_choices_to={'is_staff': True},
+    #                            on_delete=models.CASCADE)  # передать статус от суппорта
 
     def __str__(self):
         return self.title

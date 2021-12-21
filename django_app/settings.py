@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'tickets',
+    'statuses',
+    'support',
 
     'rest_framework',
+    'django_filters',
 
 ]
 
@@ -137,12 +140,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-     'DEFAULT_AUTHENTICATION_CLASSES': [
-         'users.jwt.JWTAuthentication'
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'users.jwt.JWTAuthentication'
         # 'rest_framework.authentication.BasicAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
-     ],
- }
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+
+}
 
 # change the built-in user model
 AUTH_USER_MODEL = 'users.User'
