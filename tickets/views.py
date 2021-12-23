@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from tickets.models import Ticket
 from tickets.pagination import CustomPageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
-from django_filters.rest_framework.backends import DjangoFilterBackend
+#from django_filters.rest_framework.backends import DjangoFilterBackend
 
 
 class TicketsAPIView(ListCreateAPIView):

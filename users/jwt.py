@@ -40,8 +40,13 @@ class JWTAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed(
                 'Token is invalid')
 
-        except ObjectDoesNotExist:  # User.DoesNotExist:
+        # Unresolved attribute reference 'DoesNotExist' for class 'User'
+        # ШТА? еще не нашла как и откуда его взять. нашла такое
+        # https://stackoverflow.com/questions/52455835/where-do-i-import-the-doesnotexist-exception-in-django-1-10-from
+        # но это, по идее, тоже самое что и тут написано
+        except User.DoesNotExist as no_user:
             raise exceptions.AuthenticationFailed(
                 'No such user')
-
+        #  This code is unreachable
+        #  Why? How to make it reachable?
         return super().authenticate(request)

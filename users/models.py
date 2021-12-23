@@ -95,7 +95,8 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModels):
     first_name = models.CharField(_('first name'), max_length=150, blank=True)
     last_name = models.CharField(_('last name'), max_length=150, blank=True)
     email = models.EmailField(_('email address'), blank=False, unique=True)
-    #role = models.CharField(max_length=15, choices=ROLES, default="Member")  ##############
+    #role = models.CharField(max_length=15, choices=ROLES, default="Member")  # может лучше так, но я пока не знаю как
+                                                                              # передавать статус суппорту/ пока сделано флажками
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,

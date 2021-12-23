@@ -11,8 +11,9 @@ class Ticket(TrackingModels):
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     # status = models.ForeignKey(to=Status,
     #                            limit_choices_to={'is_staff': True},
-    #                            on_delete=models.CASCADE)  # передать статус от суппорта
+    #                            on_delete=models.CASCADE)  # передать статус от суппорта? правильно ли сделано вообще?
+
+
 
     def __str__(self):
         return self.title
-
